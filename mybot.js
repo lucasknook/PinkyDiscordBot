@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./config.json");
+const config = require("./node_modules/discord.js-music-v11/config.json");
 const music = require('discord.js-music-v11');
 const fs = require("fs")
 var a = 0;
@@ -27,9 +27,8 @@ client.on("message", (message) => {
   	config.Prefix = newPrefix;
 
   	// Now we have to save the file.
-  	fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+  	fs.writeFile("./node_modules/discord.js-music-v11/config.json", JSON.stringify(config), (err) => console.error);
   	message.channel.send("prefix changed to: " + config.Prefix);
-	music(client, {prefix: config.Prefix});
   	}
 	
   	if(message.content.startsWith("Reset_Prefix")) {
@@ -40,9 +39,8 @@ client.on("message", (message) => {
 	
   	let newPrefix = "!"
   	config.Prefix = newPrefix;
-    fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+    fs.writeFile("./node_modules/discord.js-music-v11/config.json", JSON.stringify(config), (err) => console.error);
     message.channel.send("Prefix changed to default (!)");
-	music(client, {prefix: config.Prefix});
   	}
 	   if (message.content.startsWith(config.Prefix + "secret")) {
 			if(a != 4){
@@ -56,7 +54,12 @@ client.on("message", (message) => {
 			return;
 			}
   	}
+
+  	if (message.content.startsWith(config.Prefix + "test")) {
+  		message.channel.send("test");
+  	}
 });
+//process.env.BOT_TOKEN
 client.login(process.env.BOT_TOKEN);
 
-music(client, {prefix: config.Prefix});
+music(client);
