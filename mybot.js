@@ -20,8 +20,7 @@ client.on("message", (message) => {
  		message.channel.send("Unauthorised to change prefix, please ask LucasKnook for permission!");
  		return;
  	}
-
-  	// Gets the prefix from the command (eg. "!prefix +" it will take the "+" from it)
+    // Gets the prefix from the command (eg. "!prefix +" it will take the "+" from it)
   	let newPrefix = message.content.split(" ").slice(1, 2)[0];
 
   	// change the configuration in memory
@@ -30,18 +29,22 @@ client.on("message", (message) => {
   	// Now we have to save the file.
   	fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
   	message.channel.send("prefix changed to: " + config.Prefix);
+	music(client, {prefix: config.Prefix});
   	}
+	
   	if(message.content.startsWith("Reset_Prefix")) {
   	if(message.author.id !== config.ownerID) {
   		message.channel.send("Unauthorised to reset prefix to default (!), please ask LucasKnook for permission!");
   		return;
   	}
+	
   	let newPrefix = "!"
   	config.Prefix = newPrefix;
     fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
     message.channel.send("Prefix changed to default (!)");
+	music(client, {prefix: config.Prefix});
   	}
-	 	if (message.content.startsWith(config.Prefix + "secret")) {
+	   if (message.content.startsWith(config.Prefix + "secret")) {
 			if(a != 4){
     		message.channel.send("DID YOU REALLY FCKING THINK THAT THERE WOULD BE A SECRET YOU PIECE OF SHEIT?!?!??!?");
 			a = a + 1
@@ -55,7 +58,5 @@ client.on("message", (message) => {
   	}
 });
 client.login(process.env.BOT_TOKEN);
-var a = 0;
-while(a == 0) {
+
 music(client, {prefix: config.Prefix});
-}
