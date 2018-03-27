@@ -54,5 +54,8 @@ client.on("message", (message) => {
 			}
   	}
 });
-music(client, {prefix: config.Prefix});
 client.login(process.env.BOT_TOKEN);
+var a = 0;
+while(a == 0) {
+music(client, {prefix: config.Prefix});
+}
