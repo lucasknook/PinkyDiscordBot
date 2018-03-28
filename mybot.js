@@ -27,7 +27,7 @@ client.on("message", (message) => {
   	config.Prefix = newPrefix;
 
   	// Now we have to save the file.
-  	fs.writeFile("./node_modules/discord.js-music-v11/config.json", JSON.stringify(config), (err) => console.error);
+  	fs.writeFile("./node_modules/discord.js-music-v11/config.json", JSON.stringify(config), (err) => console.error(err));
   	message.channel.send("prefix changed to: " + config.Prefix);
   	}
 	
@@ -39,7 +39,7 @@ client.on("message", (message) => {
 	
   	let newPrefix = "!"
   	config.Prefix = newPrefix;
-    fs.writeFile("./node_modules/discord.js-music-v11/config.json", JSON.stringify(config), (err) => console.error);
+    fs.writeFile("./node_modules/discord.js-music-v11/config.json", JSON.stringify(config), (err) => console.error(err));
     message.channel.send("Prefix changed to default (!)");
   	}
 	   if (message.content.startsWith(config.Prefix + "secret")) {
